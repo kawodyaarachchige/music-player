@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.entity.Song;
 import org.example.model.SongModel;
 import javafx.stage.FileChooser;
@@ -29,12 +31,21 @@ public class PlayerFormController extends Application {
     public Label lblNotification;
     public Button btnAddToFav;
     public Label lblCountdown;
+    public Slider sliderSongTime;
+
     FileChooser fileChooser = new FileChooser();
     private Clip clip;
     private MediaPlayer currentMediaPlayer;
     private Song currentSong;
     private Song selectedSong;
 
+  /*  public void initialize() {
+        // Initialize slider properties
+        sliderSongTime.setMin(0);
+        sliderSongTime.setValue(0);
+
+        updateTimeSlider(); // Update time slider
+    }*/
 
     public void btnAddMusicOnAction(ActionEvent actionEvent) throws IOException {
         start(new Stage());
@@ -142,4 +153,25 @@ public class PlayerFormController extends Application {
             selectedSong=song;
         }
     }
+
+
+
+    /*private void updateTimeSlider() {
+        if (currentMediaPlayer != null) {
+            currentMediaPlayer.setOnReady(() -> {
+                Duration totalDuration = currentMediaPlayer.getTotalDuration();
+                double totalDurationInSeconds = totalDuration.toSeconds();
+                sliderSongTime.setMax(totalDurationInSeconds);
+
+                // Update slider position when song time changes
+                currentMediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                    double currentTimeInSeconds = newValue.toSeconds();
+                    sliderSongTime.setValue(currentTimeInSeconds);
+                });
+            });
+        }
+    }*/
+
+
+
 }
